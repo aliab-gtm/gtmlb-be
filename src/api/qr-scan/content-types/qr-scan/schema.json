@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "qr_scans",
+  "info": {
+    "singularName": "qr-scan",
+    "pluralName": "qr-scans",
+    "displayName": "QR Scan",
+    "description": "Raw scans of printed QR campaigns."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "campaign": {
+      "type": "string"
+    },
+    "referrer": {
+      "type": "string"
+    },
+    "userAgent": {
+      "type": "text"
+    },
+    "scannedAt": {
+      "type": "datetime"
+    }
+  }
+}

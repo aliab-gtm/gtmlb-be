@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "referral_accounts",
+  "info": {
+    "singularName": "referral-account",
+    "pluralName": "referral-accounts",
+    "displayName": "Referral Account",
+    "description": "Referrers who claimed their reward and set a password. Never expose to the Public role."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "code": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "passwordHash": {
+      "type": "string",
+      "required": true
+    },
+    "claimedAt": {
+      "type": "datetime"
+    },
+    "rewardsPaid": {
+      "type": "json"
+    }
+  }
+}
