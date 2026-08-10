@@ -1,0 +1,61 @@
+# Push to main → build the Strapi image on GitHub's runners, push it to GHCR,
+# then a self-hosted runner on the GTM server pulls it and restarts the
+# gtmlb-cms container. Mirrors the CRM's GHCR pattern; the compose file lives
+# in gtmlb-fe/deploy (see that repo's DEPLOY.md §7).
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "**.md"
+  workflow_dispatch:
+
+# One deploy at a time; a new push waits for the current one to finish.
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  IMAGE: ghcr.io/${{ github.repository }}
+
+jobs:
+  build-push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ env.IMAGE }}:latest
+            ${{ env.IMAGE }}:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy:
+    needs: build-push
+    runs-on: [self-hosted, gtm-server]
+    steps:
+      - name: Pull image and restart gtmlb-cms
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+          git -C /opt/gtmlb/gtmlb-be pull --ff-only
+          cd /opt/gtmlb/gtmlb-fe/deploy
+          docker compose -f docker-compose.prod.yml --env-file .env.production pull gtmlb-cms
+          docker compose -f docker-compose.prod.yml --env-file .env.production up -d --no-build gtmlb-cms
+          docker image prune -f
