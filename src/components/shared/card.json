@@ -1,0 +1,42 @@
+{
+  "collectionName": "components_shared_cards",
+  "info": {
+    "displayName": "Card",
+    "icon": "grid"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "enumeration",
+      "enum": [
+        "LineChart",
+        "Coins",
+        "BarChart3",
+        "Wallet",
+        "Headset",
+        "ShieldCheck",
+        "Zap",
+        "Globe2",
+        "Award",
+        "Target",
+        "Handshake",
+        "Eye",
+        "Compass",
+        "Mail",
+        "Phone",
+        "MapPin",
+        "Clock",
+        "Send",
+        "MessageCircle",
+        "Check"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "text"
+    }
+  }
+}

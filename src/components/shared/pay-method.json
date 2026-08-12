@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_shared_pay_methods",
+  "info": {
+    "displayName": "Pay Method",
+    "icon": "wallet"
+  },
+  "options": {},
+  "attributes": {
+    "key": {
+      "type": "enumeration",
+      "enum": ["whish", "usdt", "omt", "bank"],
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "tagline": {
+      "type": "string"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"],
+      "required": true
+    },
+    "speed": {
+      "type": "string"
+    },
+    "how": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

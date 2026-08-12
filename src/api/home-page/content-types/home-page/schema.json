@@ -1,0 +1,73 @@
+{
+  "kind": "singleType",
+  "collectionName": "home_pages",
+  "info": {
+    "singularName": "home-page",
+    "pluralName": "home-pages",
+    "displayName": "Home Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo",
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.hero",
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "features": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.feature-grid",
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "servicesPreview": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.services-preview",
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "funding": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.funding",
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "steps": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.steps",
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "clientWall": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.client-wall",
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "blogPreview": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.blog-preview",
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "finalCta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.cta-band",
+      "pluginOptions": { "i18n": { "localized": true } }
+    }
+  }
+}

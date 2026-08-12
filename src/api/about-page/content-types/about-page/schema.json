@@ -1,0 +1,73 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_pages",
+  "info": {
+    "singularName": "about-page",
+    "pluralName": "about-pages",
+    "displayName": "About Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo",
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "header": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-head",
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "story": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.story",
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "deskCard": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.desk-card",
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "trustStats": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.stat",
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "mission": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.pillars",
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "vision": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.pillars",
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "faq": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.faq",
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "ctaBand": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.cta-band",
+      "pluginOptions": { "i18n": { "localized": true } }
+    }
+  }
+}

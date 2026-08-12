@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_services_previews",
+  "info": {
+    "displayName": "Services Preview",
+    "icon": "layer"
+  },
+  "options": {},
+  "attributes": {
+    "head": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-head"
+    },
+    "viewAllLabel": {
+      "type": "string"
+    },
+    "whatYouGetLabel": {
+      "type": "string"
+    }
+  }
+}

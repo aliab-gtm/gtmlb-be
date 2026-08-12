@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_sections_includeds",
+  "info": {
+    "displayName": "Included List",
+    "icon": "check"
+  },
+  "options": {},
+  "attributes": {
+    "head": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-head"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.tag"
+    }
+  }
+}

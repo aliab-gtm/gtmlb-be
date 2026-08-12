@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_sections_blog_previews",
+  "info": {
+    "displayName": "Blog Preview",
+    "icon": "feather"
+  },
+  "options": {},
+  "attributes": {
+    "head": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-head"
+    },
+    "latestLabel": {
+      "type": "string"
+    },
+    "limit": {
+      "type": "integer",
+      "default": 3,
+      "min": 1,
+      "max": 12
+    }
+  }
+}

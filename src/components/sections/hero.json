@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_sections_heroes",
+  "info": {
+    "displayName": "Hero",
+    "icon": "rocket"
+  },
+  "options": {},
+  "attributes": {
+    "badge": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "cta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.link"
+    },
+    "stats": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.stat",
+      "max": 4
+    },
+    "tickerSymbol": {
+      "type": "string",
+      "default": "OANDA:XAUUSD"
+    },
+    "marquee": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.tag"
+    }
+  }
+}
