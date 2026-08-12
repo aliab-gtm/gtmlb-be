@@ -1,0 +1,46 @@
+{
+  "collectionName": "components_sections_fundings",
+  "info": {
+    "displayName": "Funding Routes",
+    "icon": "cash"
+  },
+  "options": {},
+  "attributes": {
+    "head": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-head"
+    },
+    "chooseNote": {
+      "type": "string"
+    },
+    "methods": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.pay-method"
+    },
+    "deskLabel": {
+      "type": "string"
+    },
+    "deskTitle": {
+      "type": "string"
+    },
+    "deskNote": {
+      "type": "string"
+    },
+    "instantBadge": {
+      "type": "string"
+    },
+    "journeyTitle": {
+      "type": "string"
+    },
+    "journeyText": {
+      "type": "text"
+    },
+    "cta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.link"
+    }
+  }
+}
