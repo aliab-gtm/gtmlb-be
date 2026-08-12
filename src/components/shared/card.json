@@ -16,7 +16,19 @@
         "Headset",
         "ShieldCheck",
         "Zap",
-        "Globe2"
+        "Globe2",
+        "Award",
+        "Target",
+        "Handshake",
+        "Eye",
+        "Compass",
+        "Mail",
+        "Phone",
+        "MapPin",
+        "Clock",
+        "Send",
+        "MessageCircle",
+        "Check"
       ]
     },
     "title": {

@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_sections_stories",
+  "info": {
+    "displayName": "Story",
+    "icon": "book"
+  },
+  "options": {},
+  "attributes": {
+    "head": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-head"
+    },
+    "body": {
+      "type": "blocks"
+    },
+    "missionLabel": {
+      "type": "string"
+    },
+    "missionQuote": {
+      "type": "text"
+    }
+  }
+}

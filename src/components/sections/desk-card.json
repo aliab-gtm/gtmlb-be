@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_sections_desk_cards",
+  "info": {
+    "displayName": "Desk Card",
+    "icon": "phone"
+  },
+  "options": {},
+  "attributes": {
+    "eyebrow": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "text"
+    },
+    "officeLabel": {
+      "type": "string"
+    },
+    "officeValue": {
+      "type": "string"
+    },
+    "whatsappLabel": {
+      "type": "string"
+    },
+    "whatsappValue": {
+      "type": "string"
+    },
+    "cta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.link"
+    }
+  }
+}
