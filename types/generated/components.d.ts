@@ -46,6 +46,36 @@ export interface SectionsCtaBand extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsDeskCard extends Struct.ComponentSchema {
+  collectionName: 'components_sections_desk_cards';
+  info: {
+    displayName: 'Desk Card';
+    icon: 'phone';
+  };
+  attributes: {
+    cta: Schema.Attribute.Component<'shared.link', false>;
+    eyebrow: Schema.Attribute.String;
+    officeLabel: Schema.Attribute.String;
+    officeValue: Schema.Attribute.String;
+    text: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    whatsappLabel: Schema.Attribute.String;
+    whatsappValue: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsFaq extends Struct.ComponentSchema {
+  collectionName: 'components_sections_faqs';
+  info: {
+    displayName: 'FAQ';
+    icon: 'question';
+  };
+  attributes: {
+    head: Schema.Attribute.Component<'shared.section-head', false>;
+    items: Schema.Attribute.Component<'shared.faq-item', true>;
+  };
+}
+
 export interface SectionsFeatureGrid extends Struct.ComponentSchema {
   collectionName: 'components_sections_feature_grids';
   info: {
@@ -108,6 +138,31 @@ export interface SectionsHero extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsIncluded extends Struct.ComponentSchema {
+  collectionName: 'components_sections_includeds';
+  info: {
+    displayName: 'Included List';
+    icon: 'check';
+  };
+  attributes: {
+    head: Schema.Attribute.Component<'shared.section-head', false>;
+    items: Schema.Attribute.Component<'shared.tag', true>;
+  };
+}
+
+export interface SectionsPillars extends Struct.ComponentSchema {
+  collectionName: 'components_sections_pillars';
+  info: {
+    displayName: 'Pillars';
+    icon: 'layer';
+  };
+  attributes: {
+    head: Schema.Attribute.Component<'shared.section-head', false>;
+    items: Schema.Attribute.Component<'shared.card', true>;
+    quote: Schema.Attribute.Text;
+  };
+}
+
 export interface SectionsServicesPreview extends Struct.ComponentSchema {
   collectionName: 'components_sections_services_previews';
   info: {
@@ -133,6 +188,20 @@ export interface SectionsSteps extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsStory extends Struct.ComponentSchema {
+  collectionName: 'components_sections_stories';
+  info: {
+    displayName: 'Story';
+    icon: 'book';
+  };
+  attributes: {
+    body: Schema.Attribute.Blocks;
+    head: Schema.Attribute.Component<'shared.section-head', false>;
+    missionLabel: Schema.Attribute.String;
+    missionQuote: Schema.Attribute.Text;
+  };
+}
+
 export interface SharedCard extends Struct.ComponentSchema {
   collectionName: 'components_shared_cards';
   info: {
@@ -150,6 +219,18 @@ export interface SharedCard extends Struct.ComponentSchema {
         'ShieldCheck',
         'Zap',
         'Globe2',
+        'Award',
+        'Target',
+        'Handshake',
+        'Eye',
+        'Compass',
+        'Mail',
+        'Phone',
+        'MapPin',
+        'Clock',
+        'Send',
+        'MessageCircle',
+        'Check',
       ]
     >;
     text: Schema.Attribute.Text;
@@ -177,6 +258,35 @@ export interface SharedClient extends Struct.ComponentSchema {
         number
       > &
       Schema.Attribute.DefaultTo<5>;
+  };
+}
+
+export interface SharedContactCard extends Struct.ComponentSchema {
+  collectionName: 'components_shared_contact_cards';
+  info: {
+    displayName: 'Contact Card';
+    icon: 'envelop';
+  };
+  attributes: {
+    href: Schema.Attribute.String;
+    icon: Schema.Attribute.Enumeration<
+      ['Mail', 'Phone', 'MapPin', 'Clock', 'MessageCircle', 'Send']
+    > &
+      Schema.Attribute.Required;
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+    value: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SharedFaqItem extends Struct.ComponentSchema {
+  collectionName: 'components_shared_faq_items';
+  info: {
+    displayName: 'FAQ Item';
+    icon: 'question';
+  };
+  attributes: {
+    a: Schema.Attribute.Text & Schema.Attribute.Required;
+    q: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -271,13 +381,20 @@ declare module '@strapi/strapi' {
       'sections.blog-preview': SectionsBlogPreview;
       'sections.client-wall': SectionsClientWall;
       'sections.cta-band': SectionsCtaBand;
+      'sections.desk-card': SectionsDeskCard;
+      'sections.faq': SectionsFaq;
       'sections.feature-grid': SectionsFeatureGrid;
       'sections.funding': SectionsFunding;
       'sections.hero': SectionsHero;
+      'sections.included': SectionsIncluded;
+      'sections.pillars': SectionsPillars;
       'sections.services-preview': SectionsServicesPreview;
       'sections.steps': SectionsSteps;
+      'sections.story': SectionsStory;
       'shared.card': SharedCard;
       'shared.client': SharedClient;
+      'shared.contact-card': SharedContactCard;
+      'shared.faq-item': SharedFaqItem;
       'shared.link': SharedLink;
       'shared.pay-method': SharedPayMethod;
       'shared.section-head': SharedSectionHead;
