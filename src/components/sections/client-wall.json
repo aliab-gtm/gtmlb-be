@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_sections_client_walls",
+  "info": {
+    "displayName": "Client Wall",
+    "icon": "emotionHappy"
+  },
+  "options": {},
+  "attributes": {
+    "head": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-head"
+    },
+    "clients": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.client"
+    }
+  }
+}
