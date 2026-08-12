@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_sections_cta_bands",
+  "info": {
+    "displayName": "CTA Band",
+    "icon": "bell"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "cta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.link"
+    }
+  }
+}
