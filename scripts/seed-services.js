@@ -126,7 +126,7 @@ const COPY = {
 
 function buildPage(m) {
   return {
-    seo: { metaTitle: `${m.services.title} | GTM`, metaDescription: m.services.subtitle },
+    seo: { metaTitle: m.services.title, metaDescription: m.services.subtitle },
     header: { eyebrow: COPY.headerEyebrow, title: m.services.title, subtitle: m.services.subtitle },
     liveNote: COPY.liveNote,
     included: {

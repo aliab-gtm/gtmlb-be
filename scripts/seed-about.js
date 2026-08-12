@@ -88,7 +88,7 @@ const COPY = {
 
 function buildData(m) {
   return {
-    seo: { metaTitle: `${m.about.title} | GTM`, metaDescription: m.about.subtitle },
+    seo: { metaTitle: m.about.title, metaDescription: m.about.subtitle },
     header: { eyebrow: COPY.headerEyebrow, title: m.about.title, subtitle: m.about.subtitle },
     story: {
       head: { eyebrow: COPY.storyEyebrow, title: COPY.storyTitle },

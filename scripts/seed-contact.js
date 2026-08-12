@@ -27,7 +27,7 @@ const SITE = {
 
 function buildData(m) {
   return {
-    seo: { metaTitle: `${m.contact.title} | GTM`, metaDescription: m.contact.subtitle },
+    seo: { metaTitle: m.contact.title, metaDescription: m.contact.subtitle },
     header: { eyebrow: 'Get in touch', title: m.contact.title, subtitle: m.contact.subtitle },
     cards: [
       { icon: 'Mail', label: m.contact.email, value: SITE.email, href: `mailto:${SITE.email}` },
