@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_shared_clients",
+  "info": {
+    "displayName": "Client",
+    "icon": "user"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"],
+      "required": true
+    },
+    "location": {
+      "type": "string"
+    },
+    "quote": {
+      "type": "text"
+    },
+    "rating": {
+      "type": "integer",
+      "default": 5,
+      "min": 1,
+      "max": 5
+    }
+  }
+}
