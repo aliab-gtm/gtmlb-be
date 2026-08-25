@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "referral_claims",
+  "info": {
+    "singularName": "referral-claim",
+    "pluralName": "referral-claims",
+    "displayName": "Referral Claim",
+    "description": "One claimed referral tier. Confirmed = referred contact deposited at least the configured minimum."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "portalAccount": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::portal-account.portal-account",
+      "inversedBy": "referralClaims"
+    },
+    "tierPeople": {
+      "type": "integer",
+      "required": true
+    },
+    "amount": {
+      "type": "decimal",
+      "required": true
+    },
+    "confirmedAtClaim": {
+      "type": "integer",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "paid",
+        "rejected"
+      ],
+      "default": "pending",
+      "required": true
+    },
+    "adminNote": {
+      "type": "string"
+    },
+    "resolvedAt": {
+      "type": "datetime"
+    },
+    "resolvedBy": {
+      "type": "string"
+    }
+  }
+}

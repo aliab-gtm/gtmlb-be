@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cashback_claims",
+  "info": {
+    "singularName": "cashback-claim",
+    "pluralName": "cashback-claims",
+    "displayName": "Cashback Claim",
+    "description": "One claimed trading-volume rebate. Payout is manual; admin marks paid after crediting the trading account."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "portalAccount": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::portal-account.portal-account",
+      "inversedBy": "cashbackClaims"
+    },
+    "lotsAtClaim": {
+      "type": "decimal",
+      "required": true
+    },
+    "lotsAlreadyClaimed": {
+      "type": "decimal",
+      "default": 0,
+      "required": true
+    },
+    "lotsInThisClaim": {
+      "type": "decimal",
+      "required": true
+    },
+    "ratePerLot": {
+      "type": "decimal",
+      "required": true
+    },
+    "amount": {
+      "type": "decimal",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "paid",
+        "rejected"
+      ],
+      "default": "pending",
+      "required": true
+    },
+    "adminNote": {
+      "type": "string"
+    },
+    "resolvedAt": {
+      "type": "datetime"
+    },
+    "resolvedBy": {
+      "type": "string"
+    }
+  }
+}
