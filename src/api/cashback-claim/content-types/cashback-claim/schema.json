@@ -5,7 +5,7 @@
     "singularName": "cashback-claim",
     "pluralName": "cashback-claims",
     "displayName": "Cashback Claim",
-    "description": "One claimed trading-volume rebate. Payout is manual; admin marks paid after crediting the trading account."
+    "description": "One claimed trading-volume rebate. Payout is manual; admin marks paid after crediting the trading account. `evidence` is the trading/referral record as it stood when the claim was filed \u2014 review against this, not a figure that may have moved since."
   },
   "options": {
     "draftAndPublish": false
@@ -56,6 +56,9 @@
     },
     "resolvedBy": {
       "type": "string"
+    },
+    "evidence": {
+      "type": "json"
     }
   }
 }

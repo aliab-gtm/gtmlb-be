@@ -5,7 +5,7 @@
     "singularName": "referral-claim",
     "pluralName": "referral-claims",
     "displayName": "Referral Claim",
-    "description": "One claimed referral tier. Confirmed = referred contact deposited at least the configured minimum."
+    "description": "One claimed referral tier. Confirmed = referred contact deposited at least the configured minimum. `evidence` is the trading/referral record as it stood when the claim was filed \u2014 review against this, not a figure that may have moved since."
   },
   "options": {
     "draftAndPublish": false
@@ -47,6 +47,9 @@
     },
     "resolvedBy": {
       "type": "string"
+    },
+    "evidence": {
+      "type": "json"
     }
   }
 }
