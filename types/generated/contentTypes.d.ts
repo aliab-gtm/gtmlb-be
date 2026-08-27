@@ -474,7 +474,7 @@ export interface ApiCashbackClaimCashbackClaim
   extends Struct.CollectionTypeSchema {
   collectionName: 'cashback_claims';
   info: {
-    description: 'One claimed trading-volume rebate. Payout is manual; admin marks paid after crediting the trading account.';
+    description: 'One claimed trading-volume rebate. Payout is manual; admin marks paid after crediting the trading account. `evidence` is the trading/referral record as it stood when the claim was filed \u2014 review against this, not a figure that may have moved since.';
     displayName: 'Cashback Claim';
     pluralName: 'cashback-claims';
     singularName: 'cashback-claim';
@@ -488,6 +488,7 @@ export interface ApiCashbackClaimCashbackClaim
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    evidence: Schema.Attribute.JSON;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -776,7 +777,7 @@ export interface ApiReferralClaimReferralClaim
   extends Struct.CollectionTypeSchema {
   collectionName: 'referral_claims';
   info: {
-    description: 'One claimed referral tier. Confirmed = referred contact deposited at least the configured minimum.';
+    description: 'One claimed referral tier. Confirmed = referred contact deposited at least the configured minimum. `evidence` is the trading/referral record as it stood when the claim was filed \u2014 review against this, not a figure that may have moved since.';
     displayName: 'Referral Claim';
     pluralName: 'referral-claims';
     singularName: 'referral-claim';
@@ -791,6 +792,7 @@ export interface ApiReferralClaimReferralClaim
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    evidence: Schema.Attribute.JSON;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
