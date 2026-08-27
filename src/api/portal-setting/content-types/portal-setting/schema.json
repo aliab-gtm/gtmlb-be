@@ -1,0 +1,51 @@
+{
+  "kind": "singleType",
+  "collectionName": "portal_settings",
+  "info": {
+    "singularName": "portal-setting",
+    "pluralName": "portal-settings",
+    "displayName": "Portal Settings",
+    "description": "Master switch and reward configuration for the client portal at /portal. `enabled` off makes every portal route 404."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "enabled": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "cashbackEnabled": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "referralEnabled": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "cashbackRatePerLot": {
+      "type": "decimal",
+      "default": 3,
+      "required": true
+    },
+    "cashbackMinPayout": {
+      "type": "decimal",
+      "default": 5,
+      "required": true
+    },
+    "referralMinDeposit": {
+      "type": "decimal",
+      "default": 100,
+      "required": true
+    },
+    "referralTiers": {
+      "type": "json"
+    },
+    "announcement": {
+      "type": "text"
+    }
+  }
+}
