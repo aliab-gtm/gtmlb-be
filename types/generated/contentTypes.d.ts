@@ -470,53 +470,6 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiCashbackClaimCashbackClaim
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'cashback_claims';
-  info: {
-    description: 'One claimed trading-volume rebate. Payout is manual; admin marks paid after crediting the trading account. `evidence` is the trading/referral record as it stood when the claim was filed \u2014 review against this, not a figure that may have moved since.';
-    displayName: 'Cashback Claim';
-    pluralName: 'cashback-claims';
-    singularName: 'cashback-claim';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    adminNote: Schema.Attribute.String;
-    amount: Schema.Attribute.Decimal & Schema.Attribute.Required;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    evidence: Schema.Attribute.JSON;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::cashback-claim.cashback-claim'
-    > &
-      Schema.Attribute.Private;
-    lotsAlreadyClaimed: Schema.Attribute.Decimal &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<0>;
-    lotsAtClaim: Schema.Attribute.Decimal & Schema.Attribute.Required;
-    lotsInThisClaim: Schema.Attribute.Decimal & Schema.Attribute.Required;
-    portalAccount: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::portal-account.portal-account'
-    >;
-    publishedAt: Schema.Attribute.DateTime;
-    ratePerLot: Schema.Attribute.Decimal & Schema.Attribute.Required;
-    resolvedAt: Schema.Attribute.DateTime;
-    resolvedBy: Schema.Attribute.String;
-    status: Schema.Attribute.Enumeration<['pending', 'paid', 'rejected']> &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'pending'>;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiContactMessageContactMessage
   extends Struct.CollectionTypeSchema {
   collectionName: 'contact_messages';
@@ -578,8 +531,6 @@ export interface ApiLeadLead extends Struct.CollectionTypeSchema {
     page: Schema.Attribute.String;
     phone: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    referralCode: Schema.Attribute.String & Schema.Attribute.Unique;
-    referredByCode: Schema.Attribute.String;
     status: Schema.Attribute.Enumeration<
       ['new', 'contacted', 'approved', 'rejected']
     > &
@@ -591,119 +542,6 @@ export interface ApiLeadLead extends Struct.CollectionTypeSchema {
     utmCampaign: Schema.Attribute.String;
     utmMedium: Schema.Attribute.String;
     utmSource: Schema.Attribute.String;
-  };
-}
-
-export interface ApiPortalAccountPortalAccount
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'portal_accounts';
-  info: {
-    description: 'Client portal logins, created by the desk once a trading account exists. The desk attaches the MT5 number, so ownership is established by construction and no approval queue is needed. NEVER expose to the Public role \u2014 holds a password hash. `inviteUrl` is the link to send the client if the email fails.';
-    displayName: 'Portal Account';
-    pluralName: 'portal-accounts';
-    singularName: 'portal-account';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    cashbackClaims: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::cashback-claim.cashback-claim'
-    >;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    email: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
-    inviteEmailError: Schema.Attribute.String;
-    inviteExpiresAt: Schema.Attribute.DateTime;
-    inviteSentAt: Schema.Attribute.DateTime;
-    inviteToken: Schema.Attribute.String;
-    inviteUrl: Schema.Attribute.String;
-    lastLoginAt: Schema.Attribute.DateTime;
-    linkStatus: Schema.Attribute.Enumeration<
-      ['pending', 'approved', 'rejected']
-    > &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'pending'>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::portal-account.portal-account'
-    > &
-      Schema.Attribute.Private;
-    mt5Login: Schema.Attribute.BigInteger & Schema.Attribute.Unique;
-    mt5Name: Schema.Attribute.String;
-    name: Schema.Attribute.String;
-    passwordHash: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    referralClaims: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::referral-claim.referral-claim'
-    >;
-    referralCode: Schema.Attribute.String;
-    referralReviewNote: Schema.Attribute.String;
-    referralStatus: Schema.Attribute.Enumeration<
-      ['pending', 'approved', 'rejected']
-    > &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'pending'>;
-    reviewedAt: Schema.Attribute.DateTime;
-    reviewedBy: Schema.Attribute.String;
-    reviewNote: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiPortalSettingPortalSetting extends Struct.SingleTypeSchema {
-  collectionName: 'portal_settings';
-  info: {
-    description: 'Master switch and reward configuration for the client portal at /portal. `enabled` off makes every portal route 404.';
-    displayName: 'Portal Settings';
-    pluralName: 'portal-settings';
-    singularName: 'portal-setting';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    announcement: Schema.Attribute.Text;
-    cashbackEnabled: Schema.Attribute.Boolean &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<true>;
-    cashbackMinPayout: Schema.Attribute.Decimal &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<5>;
-    cashbackRatePerLot: Schema.Attribute.Decimal &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<3>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    enabled: Schema.Attribute.Boolean &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<false>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::portal-setting.portal-setting'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    referralEnabled: Schema.Attribute.Boolean &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<true>;
-    referralMinDeposit: Schema.Attribute.Decimal &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<100>;
-    referralTiers: Schema.Attribute.JSON;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
   };
 }
 
@@ -732,121 +570,6 @@ export interface ApiQrScanQrScan extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     referrer: Schema.Attribute.String;
     scannedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    userAgent: Schema.Attribute.Text;
-  };
-}
-
-export interface ApiReferralAccountReferralAccount
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'referral_accounts';
-  info: {
-    description: 'Referrers who claimed their reward and set a password. Never expose to the Public role.';
-    displayName: 'Referral Account';
-    pluralName: 'referral-accounts';
-    singularName: 'referral-account';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    claimedAt: Schema.Attribute.DateTime;
-    code: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    email: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::referral-account.referral-account'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String & Schema.Attribute.Required;
-    passwordHash: Schema.Attribute.String & Schema.Attribute.Required;
-    publishedAt: Schema.Attribute.DateTime;
-    rewardsPaid: Schema.Attribute.JSON;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiReferralClaimReferralClaim
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'referral_claims';
-  info: {
-    description: 'One claimed referral tier. Confirmed = referred contact deposited at least the configured minimum. `evidence` is the trading/referral record as it stood when the claim was filed \u2014 review against this, not a figure that may have moved since.';
-    displayName: 'Referral Claim';
-    pluralName: 'referral-claims';
-    singularName: 'referral-claim';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    adminNote: Schema.Attribute.String;
-    amount: Schema.Attribute.Decimal & Schema.Attribute.Required;
-    confirmedAtClaim: Schema.Attribute.Integer & Schema.Attribute.Required;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    evidence: Schema.Attribute.JSON;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::referral-claim.referral-claim'
-    > &
-      Schema.Attribute.Private;
-    portalAccount: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::portal-account.portal-account'
-    >;
-    publishedAt: Schema.Attribute.DateTime;
-    resolvedAt: Schema.Attribute.DateTime;
-    resolvedBy: Schema.Attribute.String;
-    status: Schema.Attribute.Enumeration<['pending', 'paid', 'rejected']> &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'pending'>;
-    tierPeople: Schema.Attribute.Integer & Schema.Attribute.Required;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiReferralClickReferralClick
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'referral_clicks';
-  info: {
-    description: 'Raw clicks on /r/:code links.';
-    displayName: 'Referral Click';
-    pluralName: 'referral-clicks';
-    singularName: 'referral-click';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    clickedAt: Schema.Attribute.DateTime;
-    code: Schema.Attribute.String;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::referral-click.referral-click'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    referrer: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1366,15 +1089,9 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::blog.blog': ApiBlogBlog;
-      'api::cashback-claim.cashback-claim': ApiCashbackClaimCashbackClaim;
       'api::contact-message.contact-message': ApiContactMessageContactMessage;
       'api::lead.lead': ApiLeadLead;
-      'api::portal-account.portal-account': ApiPortalAccountPortalAccount;
-      'api::portal-setting.portal-setting': ApiPortalSettingPortalSetting;
       'api::qr-scan.qr-scan': ApiQrScanQrScan;
-      'api::referral-account.referral-account': ApiReferralAccountReferralAccount;
-      'api::referral-claim.referral-claim': ApiReferralClaimReferralClaim;
-      'api::referral-click.referral-click': ApiReferralClickReferralClick;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
