@@ -598,7 +598,7 @@ export interface ApiPortalAccountPortalAccount
   extends Struct.CollectionTypeSchema {
   collectionName: 'portal_accounts';
   info: {
-    description: 'Client portal logins. Holds a password hash and the MT5 account the client claims. NEVER expose to the Public role.';
+    description: 'Client portal logins, created by the desk once a trading account exists. The desk attaches the MT5 number, so ownership is established by construction and no approval queue is needed. NEVER expose to the Public role \u2014 holds a password hash. `inviteUrl` is the link to send the client if the email fails.';
     displayName: 'Portal Account';
     pluralName: 'portal-accounts';
     singularName: 'portal-account';
@@ -617,6 +617,11 @@ export interface ApiPortalAccountPortalAccount
     email: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
+    inviteEmailError: Schema.Attribute.String;
+    inviteExpiresAt: Schema.Attribute.DateTime;
+    inviteSentAt: Schema.Attribute.DateTime;
+    inviteToken: Schema.Attribute.String;
+    inviteUrl: Schema.Attribute.String;
     lastLoginAt: Schema.Attribute.DateTime;
     linkStatus: Schema.Attribute.Enumeration<
       ['pending', 'approved', 'rejected']
@@ -632,7 +637,7 @@ export interface ApiPortalAccountPortalAccount
     mt5Login: Schema.Attribute.BigInteger & Schema.Attribute.Unique;
     mt5Name: Schema.Attribute.String;
     name: Schema.Attribute.String;
-    passwordHash: Schema.Attribute.String & Schema.Attribute.Required;
+    passwordHash: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     referralClaims: Schema.Attribute.Relation<
       'oneToMany',
