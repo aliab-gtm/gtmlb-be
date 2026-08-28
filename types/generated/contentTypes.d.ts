@@ -531,8 +531,6 @@ export interface ApiLeadLead extends Struct.CollectionTypeSchema {
     page: Schema.Attribute.String;
     phone: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    referralCode: Schema.Attribute.String & Schema.Attribute.Unique;
-    referredByCode: Schema.Attribute.String;
     status: Schema.Attribute.Enumeration<
       ['new', 'contacted', 'approved', 'rejected']
     > &
@@ -572,78 +570,6 @@ export interface ApiQrScanQrScan extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     referrer: Schema.Attribute.String;
     scannedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    userAgent: Schema.Attribute.Text;
-  };
-}
-
-export interface ApiReferralAccountReferralAccount
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'referral_accounts';
-  info: {
-    description: 'Referrers who claimed their reward and set a password. Never expose to the Public role.';
-    displayName: 'Referral Account';
-    pluralName: 'referral-accounts';
-    singularName: 'referral-account';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    claimedAt: Schema.Attribute.DateTime;
-    code: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    email: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::referral-account.referral-account'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String & Schema.Attribute.Required;
-    passwordHash: Schema.Attribute.String & Schema.Attribute.Required;
-    publishedAt: Schema.Attribute.DateTime;
-    rewardsPaid: Schema.Attribute.JSON;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiReferralClickReferralClick
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'referral_clicks';
-  info: {
-    description: 'Raw clicks on /r/:code links.';
-    displayName: 'Referral Click';
-    pluralName: 'referral-clicks';
-    singularName: 'referral-click';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    clickedAt: Schema.Attribute.DateTime;
-    code: Schema.Attribute.String;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::referral-click.referral-click'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    referrer: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1166,8 +1092,6 @@ declare module '@strapi/strapi' {
       'api::contact-message.contact-message': ApiContactMessageContactMessage;
       'api::lead.lead': ApiLeadLead;
       'api::qr-scan.qr-scan': ApiQrScanQrScan;
-      'api::referral-account.referral-account': ApiReferralAccountReferralAccount;
-      'api::referral-click.referral-click': ApiReferralClickReferralClick;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

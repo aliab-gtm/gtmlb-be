@@ -31,13 +31,6 @@
     "message": {
       "type": "text"
     },
-    "referralCode": {
-      "type": "string",
-      "unique": true
-    },
-    "referredByCode": {
-      "type": "string"
-    },
     "status": {
       "type": "enumeration",
       "enum": [
