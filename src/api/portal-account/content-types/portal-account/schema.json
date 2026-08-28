@@ -5,7 +5,7 @@
     "singularName": "portal-account",
     "pluralName": "portal-accounts",
     "displayName": "Portal Account",
-    "description": "Client portal logins. Holds a password hash and the MT5 account the client claims. NEVER expose to the Public role."
+    "description": "Client portal logins, created by the desk once a trading account exists. The desk attaches the MT5 number, so ownership is established by construction and no approval queue is needed. NEVER expose to the Public role \u2014 holds a password hash. `inviteUrl` is the link to send the client if the email fails."
   },
   "options": {
     "draftAndPublish": false
@@ -21,7 +21,22 @@
     },
     "passwordHash": {
       "type": "string",
-      "required": true
+      "required": false
+    },
+    "inviteToken": {
+      "type": "string"
+    },
+    "inviteExpiresAt": {
+      "type": "datetime"
+    },
+    "inviteUrl": {
+      "type": "string"
+    },
+    "inviteSentAt": {
+      "type": "datetime"
+    },
+    "inviteEmailError": {
+      "type": "string"
     },
     "mt5Login": {
       "type": "biginteger",
